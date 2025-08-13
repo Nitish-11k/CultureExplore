@@ -59,7 +59,7 @@ const Hero = () => {
           <h1 className="mobile-heading font-bold text-white mb-4 sm:mb-6 leading-tight">
             <span className="block">Experience</span>
             <span className="block gradient-text">India's Nature</span>
-            <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-2 sm:mt-4 text-white/80 font-normal">
+            <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-2 sm:mt-4 text-white/80 font-Normal">
               Through Authentic Stays
             </span>
           </h1>

@@ -7,9 +7,9 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-airbnb-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">A</span>
+                <span className="text-white font-bold text-lg">CE</span>
               </div>
-              <span className="text-xl font-bold">airbnb</span>
+              <span className="text-xl font-bold">CULTURE EXPLORE</span>
             </div>
             <p className="text-gray-400 text-sm">
               Your home away from home. Discover unique places to stay and experiences around the world.
@@ -52,7 +52,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © 2024 Airbnb Startup. All rights reserved.
+            © 2024 CULTURE EXPLORE Startup. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-gray-400 hover:text-white transition-colors">

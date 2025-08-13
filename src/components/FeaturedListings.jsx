@@ -29,7 +29,7 @@ const FeaturedListings = () => {
       location: "Manali, Himachal Pradesh, India",
       price: 850,
       rating: 4.9,
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80",
       type: "Mountain Lodge",
       featured: true,
       amenities: ["Mountain Views", "Alpine Suite", "Nature Trails"]
