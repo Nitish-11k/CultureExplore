@@ -1,72 +1,107 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const Categories = () => {
   const [activeCategory, setActiveCategory] = useState(null)
+  const [scrollY, setScrollY] = useState(0)
+  const ticking = useRef(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ticking.current) {
+        ticking.current = true
+        requestAnimationFrame(() => {
+          setScrollY(window.scrollY)
+          ticking.current = false
+        })
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   const categories = [
     {
       id: 1,
       name: "Mountain Retreats",
       icon: "🏔️",
-      description: "Experience alpine beauty",
+      description: "Experience the majestic beauty of the Himalayas",
+      longDescription: "Discover serene mountain lodges nestled among snow-capped peaks. Perfect for adventure seekers and nature lovers seeking tranquility in the lap of the mountains.",
       color: "from-blue-400 to-cyan-400",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      location: "Manali, Himachal Pradesh"
     },
     {
       id: 2,
       name: "River Views",
       icon: "🌊",
-      description: "Peaceful water scenes",
+      description: "Peaceful riverside serenity",
+      longDescription: "Wake up to the soothing sounds of flowing rivers. These properties offer perfect views of pristine waters and opportunities for river activities.",
       color: "from-green-400 to-emerald-400",
-      image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+      image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      location: "Rishikesh, Uttarakhand"
     },
     {
       id: 3,
       name: "Forest Cabins",
       icon: "🌿",
-      description: "Woodland adventures",
+      description: "Immerse in dense woodland adventures",
+      longDescription: "Hidden among ancient trees, these forest cabins provide an authentic wilderness experience with modern comforts and wildlife encounters.",
       color: "from-emerald-400 to-teal-400",
-      image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+      image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      location: "Coorg, Karnataka"
     },
     {
       id: 4,
       name: "Coastal Views",
       icon: "🏖️",
-      description: "Oceanfront serenity",
+      description: "Oceanfront paradise",
+      longDescription: "Breathtaking views of the Arabian Sea and Indian Ocean. Enjoy pristine beaches, water sports, and stunning sunsets from your private coastal retreat.",
       color: "from-blue-400 to-indigo-400",
-      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80"
+      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80",
+      location: "Goa, India"
     },
     {
       id: 5,
       name: "Desert Landscapes",
       icon: "🏜️",
-      description: "Arid beauty",
+      description: "Experience the magic of the Thar Desert",
+      longDescription: "Discover the golden sands of Rajasthan. Stay in luxury desert camps under starlit skies and experience traditional desert culture and camel safaris.",
       color: "from-yellow-400 to-orange-400",
-      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      location: "Jaisalmer, Rajasthan"
     },
     {
       id: 6,
       name: "Valley Views",
       icon: "🏞️",
-      description: "Scenic landscapes",
+      description: "Panoramic valley vistas",
+      longDescription: "Spectacular views of lush valleys surrounded by towering mountains. Perfect for photography enthusiasts and those seeking peaceful mountain retreats.",
       color: "from-indigo-400 to-purple-400",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      location: "Kashmir Valley"
     },
     {
       id: 7,
       name: "Tea Gardens",
       icon: "🍃",
-      description: "Lush plantations",
+      description: "Lush tea plantation experiences",
+      longDescription: "Stay amidst rolling tea gardens with misty mountain views. Learn about tea cultivation and enjoy the fresh mountain air of the Eastern Himalayas.",
       color: "from-emerald-400 to-green-400",
-      image: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2026&q=80"
+      image: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2026&q=80",
+      location: "Darjeeling, West Bengal"
     },
     {
       id: 8,
       name: "Wildlife Sanctuaries",
       icon: "🦁",
-      description: "Nature encounters",
+      description: "Close encounters with nature",
+      longDescription: "Experience wildlife in their natural habitat. Stay in eco-friendly lodges near national parks and witness India's diverse wildlife up close.",
       color: "from-orange-400 to-red-400",
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      location: "Ranthambore, Rajasthan"
     }
   ]
 
@@ -91,62 +126,79 @@ const Categories = () => {
           </p>
         </div>
 
-        {/* Categories Grid */}
+        {/* Parallax Categories Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {categories.map((category, index) => (
             <div
               key={category.id}
-              className={`room-item slide-in premium-shadow`}
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`room-item slide-in premium-shadow group cursor-pointer`}
+              style={{ 
+                animationDelay: `${index * 0.1}s`,
+                transform: `translateY(${scrollY * (0.05 + index * 0.01)}px)`
+              }}
               onMouseEnter={() => setActiveCategory(category.id)}
               onMouseLeave={() => setActiveCategory(null)}
             >
-              <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden rounded-2xl group">
-                {/* Background Image */}
+              <div className="relative h-64 sm:h-72 lg:h-80 overflow-hidden rounded-2xl group">
+                {/* Background Image with Parallax */}
                 <div className="absolute inset-0">
                   <img
                     src={category.image}
                     alt={category.name}
-                    className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+                    className="w-full h-full object-cover transition-all duration-1000 ease-out group-hover:scale-110"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                 </div>
 
-                {/* Content */}
-                <div className="relative z-10 p-3 sm:p-4 lg:p-6 h-full flex flex-col justify-end">
+                {/* Content Overlay */}
+                <div className="relative z-10 p-4 sm:p-5 lg:p-6 h-full flex flex-col justify-end">
                   {/* Icon */}
                   <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br ${category.color} rounded-xl sm:rounded-2xl flex items-center justify-center text-2xl sm:text-3xl mb-3 sm:mb-4 shadow-2xl group-hover:scale-110 transition-transform duration-500`}>
                     {category.icon}
                   </div>
 
+                  {/* Location Badge */}
+                  <div className="mb-2 sm:mb-3">
+                    <span className="inline-block bg-white/20 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full border border-white/30">
+                      📍 {category.location}
+                    </span>
+                  </div>
+
                   {/* Text Content */}
                   <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-white">
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-white">
                       {category.name}
                     </h3>
-                    <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
+                    <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-3">
                       {category.description}
                     </p>
+                    
+                    {/* Long Description (Hidden by default, shown on hover) */}
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 max-h-0 group-hover:max-h-32 overflow-hidden">
+                      <p className="text-white/70 text-xs leading-relaxed">
+                        {category.longDescription}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Hover Effect */}
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                   {/* Arrow Indicator */}
-                  <div className="absolute top-2 sm:top-4 right-2 sm:right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-2 group-hover:translate-x-0">
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center shadow-lg">
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-2 group-hover:translate-x-0">
+                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center shadow-lg">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>
                     </div>
                   </div>
-                </div>
 
-                {/* Active State Overlay */}
-                {activeCategory === category.id && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-500 opacity-30 transition-all duration-500"></div>
-                )}
+                  {/* Active State Overlay */}
+                  {activeCategory === category.id && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-500 opacity-30 transition-all duration-500"></div>
+                  )}
+                </div>
               </div>
             </div>
           ))}
